@@ -1,39 +1,40 @@
-package br.senai.sp.poo_introduction;
-
-import br.senai.sp.poo_introduction.Model.Register;
-
 import java.util.Scanner;
+import Model.Register;
 
 public class Main {
     public static void main(String[] args) {
 
-        /**Instancia Scanner*/
         Scanner teclado = new Scanner(System.in);
-
-        /**Instancia Register*/
         Register objRegister = new Register();
 
         int opcao = 0;
+        boolean opcaoValida = false;
 
-        System.out.println("Digite a opção que deseja fazer o cadastro? \n" +
-                "1 - Cadastro de Professores \n" +
-                "2 - Cadastro de Alunos \n" +
-                "3 - Cadasrtrar Ambos \n" +
-                "Opção: "
-                );
-        opcao = teclado.nextInt();
+        while (!opcaoValida) {
+            System.out.println("Digite a opção que deseja fazer o cadastro:\n" +
+                    "1 - Cadastro de Professores\n" +
+                    "2 - Cadastro de Alunos\n" +
+                    "3 - Cadastrar Ambos\n" +
+                    "Opção: ");
+            opcao = teclado.nextInt();
 
-
-        if (opcao==1){
-            objRegister.RegisterProf();
-        }else if(opcao==2) {
-            objRegister.RegisterStudent();
-        } else if (opcao==3) {
-            objRegister.BothRegister();
-        } else {
-            System.out.println("Digite uma opção válida");
+            switch (opcao) {
+                case 1:
+                    objRegister.RegisterProf();
+                    opcaoValida = true;
+                    break;
+                case 2:
+                    objRegister.RegisterStudent();
+                    opcaoValida = true;
+                    break;
+                case 3:
+                    objRegister.BothRegister();
+                    opcaoValida = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida. Digite uma opção válida.");
+                    break;
+            }
         }
-
     }
-
 }
